@@ -4,10 +4,10 @@ public class PBullet : MonoBehaviour
 {
     public float Speed = 4.0f;
     public int Attack = 10;
+    public GameObject effect;
 
     void Start()
     {
-        
     }
 
     void Update()
@@ -30,6 +30,15 @@ public class PBullet : MonoBehaviour
             {
                 m.Damage(Attack);
             }
+
+            Destroy(gameObject);
+        }
+
+        if (collider.CompareTag("Boss"))
+        {
+            GameObject go = Instantiate(effect, transform.position, Quaternion.identity);
+            Destroy(go, 1);
+        
             Destroy(gameObject);
         }
     }

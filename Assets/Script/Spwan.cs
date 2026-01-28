@@ -9,6 +9,7 @@ public class Spwan : MonoBehaviour
     public float SpwanStop = 10;
     public GameObject monster1;
     public GameObject monster2;
+    public GameObject boss;
 
     bool swi = true;
     bool swi2 = true;
@@ -22,6 +23,9 @@ public class Spwan : MonoBehaviour
 
     void Start()
     {
+        
+        // Vector3 pos = new Vector3(0, 3f, 0);
+        // Instantiate(boss, pos, Quaternion.identity); 
         StartCoroutine("RandomSpwan");
         Invoke("Stop", SpwanStop);
     }
@@ -55,7 +59,7 @@ public class Spwan : MonoBehaviour
         StopCoroutine("RandomSpwan");
 
         StartCoroutine("RandomSpwan2");
-        Invoke("Stop2", SpwanStop + 20);
+        Invoke("Stop2", SpwanStop + 5);
     }
 
     void Stop2()
@@ -66,6 +70,8 @@ public class Spwan : MonoBehaviour
         // boss
         textBossWarning.SetActive(true);
 
+        Vector3 pos = new Vector3(0, 3f, 0);
+        Instantiate(boss, pos, Quaternion.identity); 
         StartCoroutine("Shake");
     }
 
@@ -74,7 +80,7 @@ public class Spwan : MonoBehaviour
         int shakeCnt = 30;
         while (shakeCnt > 0)
         {
-            CameraImpulse.instance.CameraShakeShow();
+            CameraImpulse.Instance.CameraShakeShow();
             yield return new WaitForSeconds(0.1f);
             shakeCnt--;
         }
